@@ -1,4 +1,4 @@
-# CS2108 Image Compression
+# CS2108: JPEG-like Image Compression Project
 
 **Authors:** Sneha Kumar, Ng Siew Zhang
 
