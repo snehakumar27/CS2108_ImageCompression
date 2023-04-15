@@ -1,4 +1,4 @@
-# CS2108_ImageCompression
+# CS2108 Image Compression
 
 **Authors:** Sneha Kumar, Ng Siew Zhang
 
