@@ -234,7 +234,7 @@ xlabel('Threshold Proportion');
 ylabel('Metric Value');
 yticks(0:0.05:1)
 title('resize before with enco, blocks = "none"')
-legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'southeast')
+legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_',file_name,'_before_enco_blocks=none_metrics.jpg'))
 
@@ -263,7 +263,7 @@ xlabel('Threshold Proportion');
 ylabel('Metric Value');
 yticks(0:0.05:1)
 title('Resize before with Encoding, blocks = "avg pool"')
-legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'southeast')
+legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_',file_name,'_before_enco_blocks=avg_pool_metrics.jpg'))
 
@@ -292,7 +292,7 @@ xlabel('Threshold Proportion');
 ylabel('Metric Value');
 yticks(0:0.05:1)
 title('resize before with enco, blocks = "max pool"')
-legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'southeast')
+legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_',file_name,'_before_enco_blocks=max_pool_metrics.jpg'))
 
@@ -376,7 +376,7 @@ xlabel('Threshold Proportion');
 ylabel('Metric Value');
 yticks(0:0.05:1)
 title('resize after with enco, blocks = "none"')
-legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'southeast')
+legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_',file_name,'_after_enco_blocks=none_metrics.jpg'))
 
@@ -405,7 +405,7 @@ xlabel('Threshold Proportion');
 ylabel('Metric Value');
 yticks(0:0.05:1)
 title('resize after with enco, blocks = "avg pool"')
-legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'southeast')
+legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_',file_name,'_after_enco_blocks=avg_pool_metrics.jpg'))
 
@@ -434,7 +434,7 @@ xlabel('Threshold Proportion');
 ylabel('Metric Value');
 yticks(0:0.05:1)
 title('resize after with enco, blocks = "max pool"')
-legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'southeast')
+legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_',file_name,'_after_enco_blocks=max_pool_metrics.jpg'))
 
@@ -528,7 +528,7 @@ xlabel('Quantization Step');
 ylabel('Metric Value');
 yticks(0:0.05:1)
 title('resize before with enco, blocks = "none"')
-legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'southeast')
+legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_',file_name,'_before_enco_blocks=none_metrics.jpg'))
 
@@ -557,7 +557,7 @@ xlabel('Quantization Step');
 ylabel('Metric Value');
 yticks(0:0.05:1)
 title('resize before with enco, blocks = "avg pool"')
-legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'southeast')
+legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_',file_name,'_before_enco_blocks=avg_pool_metrics.jpg'))
 
@@ -585,7 +585,7 @@ xlabel('Quantization Step');
 ylabel('Metric Value');
 yticks(0:0.05:1)
 title('resize before with enco, blocks = "max pool"')
-legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'southeast')
+legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_',file_name,'_before_enco_blocks=max_pool_metrics.jpg'))
 
@@ -666,7 +666,7 @@ xlabel('Quantization Step');
 ylabel('Metric Value');
 yticks(0:0.05:1)
 title('resize after with enco, blocks = "none"')
-legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'southeast')
+legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_',file_name,'_after_enco_blocks=none_metrics.jpg'))
 
@@ -695,7 +695,7 @@ xlabel('Quantization Step');
 ylabel('Metric Value');
 yticks(0:0.05:1)
 title('resize after with enco, blocks = "avg pool"')
-legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'southeast')
+legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_',file_name,'_after_enco_blocks=avg_pool_metrics.jpg'))
 
@@ -724,7 +724,7 @@ xlabel('Quantization Step');
 ylabel('Metric Value');
 yticks(0:0.05:1)
 title('resize after with enco, blocks = "max pool"')
-legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'southeast')
+legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_',file_name,'_after_enco_blocks=max_pool_metrics.jpg'))
 
