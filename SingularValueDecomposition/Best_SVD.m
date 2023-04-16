@@ -19,12 +19,13 @@ quant = 0;          %quant step 0 since no quant & Huffman encoding tried here
 comp_no_huff = SVD_compress(img, file_name, filepath, thresh, block, resize, encoding, quant);
 
 %Compression Ratio
+disp('Best SVD Metrics')
 ori = dir('../Images/marina_bay.jpg');
-disp(strcat("Original size:", num2str(ori.bytes)))
+disp(strcat("Original size: ", num2str(ori.bytes)))
 comp = dir(strcat(filepath,'/',file_name, '.jpg'));
-disp(strcat("Compressed (no Huff) size:", num2str(comp.bytes)))
+disp(strcat("Compressed (no Huff) size: ", num2str(comp.bytes)))
 compression_ratio = (ori.bytes - comp.bytes)/ori.bytes;
-disp(strcat("Compression Ratio (no Huff):", num2str(compression_ratio)))
+disp(strcat("Compression Ratio (no Huff): ", num2str(compression_ratio)))
 
 %MSE
 error = immse(comp_no_huff,img); 
@@ -49,11 +50,11 @@ quant = 5;              %quantization step of 5
 comp_with_huff = SVD_compress(img, file_name, filepath, thresh, block, resize, encoding, quant);
 
 %Compression Ratio
-disp(strcat("Original size:", num2str(ori.bytes)))
+disp(strcat("Original size: ", num2str(ori.bytes)))
 comp = dir(strcat(filepath,'/',file_name, '.jpg'));
-disp(strcat("Compressed (with Huff) size:", num2str(comp.bytes)))
+disp(strcat("Compressed (with Huff) size: ", num2str(comp.bytes)))
 compression_ratio = (ori.bytes - comp.bytes)/ori.bytes;
-disp(strcat("Compression Ratio (with Huff):", num2str(compression_ratio)))
+disp(strcat("Compression Ratio (with Huff): ", num2str(compression_ratio)))
 
 %MSE
 error = immse(comp_with_huff,img); 

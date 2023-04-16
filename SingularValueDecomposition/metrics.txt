@@ -1,11 +1,12 @@
-Original size:89171
-Compressed (no Huff) size:54455
-Compression Ratio (no Huff):0.38932
+Best SVD Metrics
+Original size: 89171
+Compressed (no Huff) size: 54455
+Compression Ratio (no Huff): 0.38932
 MSE (no Huff): 3.6027
 SSIM (no Huff): 0.99592
-Original size:89171
-Compressed (with Huff) size:53340
-Compression Ratio (with Huff):0.40182
+Original size: 89171
+Compressed (with Huff) size: 53340
+Compression Ratio (with Huff): 0.40182
 MSE (with Huff): 31.7427
 SSIM (with Huff): 0.97496
 Stored Encodings Sizes:

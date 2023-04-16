@@ -21,12 +21,13 @@ final_img = compress_FFT(img, filepath, file_name, sigma, quant, filter, pooling
 
 
 %Compression Ratio
+disp('Best FFT Metrics')
 ori = dir('../Images/marina_bay.jpg');
-disp(strcat("Original size:", num2str(ori.bytes)))
+disp(strcat("Original size: ", num2str(ori.bytes)))
 comp = dir(strcat(filepath,'/',file_name,'_compressed.jpg'));
-disp(strcat("Compressed (no Huff) size:", num2str(comp.bytes)))
+disp(strcat("Compressed size: ", num2str(comp.bytes)))
 compression_ratio = (ori.bytes - comp.bytes)/ori.bytes;
-disp(strcat("Compression Ratio (no Huff):", num2str(compression_ratio)))
+disp(strcat("Compression Ratio: ", num2str(compression_ratio)))
 
 %MSE
 error = immse(final_img,img); 
@@ -40,7 +41,7 @@ disp(strcat("SSIM: ", num2str(ssimval)));
 d = dir(strcat(filepath,'/',file_name,'_storage_matrix_*.*'));
 original_bytes = whos('img').bytes;
 total_bytes = 0;
-disp("Stored Encodings Sizes:")
+disp("Stored Encodings Sizes: ")
 for k = 1 : length(d)
     list = load(strcat(filepath,'/',d(k).name));
     % convert list (in struct type) to cell type and access first index to get array
@@ -55,7 +56,7 @@ for k = 1 : length(d)
 end
 disp(strcat('Total Storage: ', string(total_bytes), ' bytes, ', 'Storage Reduction: ', string(original_bytes - total_bytes), ' bytes'))
 total_storage_ratio = (original_bytes - total_bytes)/original_bytes;
-disp(strcat("Storage Ratio:", num2str(total_storage_ratio)))
+disp(strcat("Storage Ratio: ", num2str(total_storage_ratio)))
 
 
 

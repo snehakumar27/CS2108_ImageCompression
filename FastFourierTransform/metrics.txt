@@ -1,9 +1,10 @@
-Original size:89171
-Compressed (no Huff) size:54199
-Compression Ratio (no Huff):0.39219
+Best FFT Metrics
+Original size: 89171
+Compressed size: 54199
+Compression Ratio: 0.39219
 MSE: 44.1944
 SSIM: 0.95005
-Stored Encodings Sizes:
+Stored Encodings Sizes: 
       112044      113221       14096       21016
 
       109711      110607       10632       16600
@@ -11,4 +12,4 @@ Stored Encodings Sizes:
       281880
 
 Total Storage:789807 bytes,Storage Reduction:55833 bytes
-Storage Ratio:0.066025
+Storage Ratio: 0.066025
