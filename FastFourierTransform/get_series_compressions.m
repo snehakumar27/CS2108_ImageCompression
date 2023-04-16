@@ -52,7 +52,6 @@ function series = get_series_compressions(img, x_values, file_name, folder_name)
     for x = 1:length(x_values)
         % MSE %
         img_compressed = imread(strcat(folder_name,'/',file_name,'_',num2str(x_values(x)),'_compressed.jpg'));
-
         error = immse(img_compressed,img); 
         series_MSE(x) = error;
     

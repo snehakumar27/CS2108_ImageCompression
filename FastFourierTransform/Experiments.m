@@ -2,6 +2,7 @@
 img = imread('../Images/marina_bay.jpg');
 file_name = "marina_bay";
 
+%%
 %%% High Pass Filter Experiments
 filter = 1;
 
@@ -42,7 +43,6 @@ plot(quants, metrics(5,:),'LineWidth',2)
 grid on;
 xlabel('Quantization Step');
 ylabel('Metric Value');
-ylim([0.88 1])
 title('resize before, pool = "none"')
 legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
@@ -59,7 +59,6 @@ plot(quants, metrics(5,:),'LineWidth',2)
 grid on;
 xlabel('Quantization Step');
 ylabel('Metric Value');
-ylim([0.88 1])
 title('resize before, pool = "avg pool"')
 legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
@@ -76,7 +75,6 @@ plot(quants, metrics(5,:),'LineWidth',2)
 grid on;
 xlabel('Quantization Step');
 ylabel('Metric Value');
-ylim([0.88 1])
 title('resize before, pool = "max pool"')
 legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
@@ -90,7 +88,7 @@ metrics = metrics_agg(:,:,2); % avg pooling
 plot(quants, metrics(1,:), 'LineWidth',2, 'Linestyle', ':')
 metrics = metrics_agg(:,:,3); % max pooling
 plot(quants, metrics(1,:), 'LineWidth',2,'Linestyle', '--')
-title('Storage Ratio for resizing before')
+title('Storage Ratio for resizing before, high pass')
 grid on;
 xlabel('Quantization Step');
 ylabel('Storage Ratio');
@@ -105,11 +103,11 @@ metrics = metrics_agg(:,:,2);
 plot(quants, metrics(5,:), 'LineWidth',2, 'Linestyle', ':')
 metrics = metrics_agg(:,:,3); 
 plot(quants, metrics(5,:), 'LineWidth',2,'Linestyle', '--')
-title('Overall metrics for resizing before ')
+title('Overall metrics for resizing before, high pass')
 grid on;
 xlabel('Quantization Step');
 ylabel('Overall Score');
-ylim([0.88 1])
+ylim([0.7 0.8])
 legend('none', 'average pool', 'max pool', 'Location', 'northeastout', 'FontSize', 8)
 saveas(gcf,strcat(filepath,'/graph_', file_name,'_before_overall_grouped.jpg'))
 
@@ -122,7 +120,7 @@ for blk = 1:length(pooling)
     for q = 1:length(quants) 
         disp(quants(q))
         file_name_specific = strcat(file_name_blks,'_',num2str(quants(q)));
-        final = compress_FFT(img, filepath, file_name_specific, sigma, quants(q), filter, pooling(blk), resize);
+        final = compress_FFT(img, filepath, file_name_specific, thresh, quants(q), filter, pooling(blk), resize);
     end
     metrics = get_series_compressions(img, quants, file_name_blks, filepath);
     metrics_agg = cat(3, metrics_agg, metrics);
@@ -139,7 +137,6 @@ plot(quants, metrics(5,:),'LineWidth',2)
 grid on;
 xlabel('Quantization Step');
 ylabel('Metric Value');
-ylim([0.88 1])
 title('resize after, pool = "avg pool"')
 legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
@@ -156,7 +153,6 @@ plot(quants, metrics(5,:),'LineWidth',2)
 grid on;
 xlabel('Quantization Step');
 ylabel('Metric Value');
-ylim([0.88 1])
 title('resize after, pool = "max pool"')
 legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
@@ -190,7 +186,7 @@ title('Overall metric for resizing after')
 grid on;
 xlabel('Quantization Step');
 ylabel('Overall Score');
-ylim([0.88 1])
+ylim([0.7 0.8])
 legend('none', 'average pool', 'max pool', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_', file_name,'_after_overall_grouped.jpg'))
@@ -201,11 +197,11 @@ saveas(gcf,strcat(filepath,'/graph_', file_name,'_after_overall_grouped.jpg'))
 filepath = 'Results/high_magnitude_pass/test_thresh';
 
 % chosen parameters:
-q = 1000;
+quant = 1500;
 resize = 1; % resize set to after
-pooling = ["avg_pool"];
+pooling = ["max_pool"];
 
-thresh = 0.001:0.001:0.01; % to test threshold
+thresh = 0.002:0.001:0.01; % to test threshold
 
 metrics_agg = [];
 
@@ -214,7 +210,7 @@ for blk = 1:length(pooling)
     for k = 1:length(thresh) 
         disp(thresh(k))
         file_name_specific = strcat(file_name_blks,'_',num2str(thresh(k)));
-        final = compress_FFT(img, filepath, file_name_specific, thresh(k), q, filter, pooling(blk), resize);
+        final = compress_FFT(img, filepath, file_name_specific, thresh(k), quant, filter, pooling(blk), resize);
     end
     metrics = get_series_compressions(img, thresh, file_name_blks, filepath);
     metrics_agg = cat(3, metrics_agg, metrics);
@@ -240,7 +236,7 @@ saveas(gcf,strcat(filepath,'/graph_',file_name,'_after_pooling=avg_pool_metrics.
 figure
 hold on
 metrics = metrics_agg(:,:,1);
-plot(sigmas, metrics(1,:), 'LineWidth',2, 'Linestyle', '-.')
+plot(thresh, metrics(1,:), 'LineWidth',2, 'Linestyle', '-.')
 title('Final Storage Ratio for high pass')
 grid on;
 xlabel('Threshold Proportion');
@@ -254,7 +250,7 @@ saveas(gcf,strcat(filepath,'/graph_', file_name,'_after_storage_ratio.jpg'))
 %%% Low Pass Filter Experiments
 filter = 0;
 
-%% Test for low pass filter and resize type, varying quant
+% Test for low pass filter and resize type, varying quant
 
 % set parameters
 filepath = 'Results/low_freq_pass/test_resize_pool_quant';
@@ -268,6 +264,7 @@ metrics_agg = [];
 
 for blk = 1:length(pooling)
     file_name_blks = strcat(file_name,'_before_',pooling(blk));
+    disp(file_name_blks)
     for q = 1:length(quants) 
         disp(quants(q))
         file_name_specific = strcat(file_name_blks,'_',num2str(quants(q)));
@@ -280,6 +277,7 @@ end
 % plot metrics for no pooling
 metrics = metrics_agg(:,:, 1);
 metrics_none = metrics;
+metrics_before = metrics_agg;
 
 figure
 hold on 
@@ -290,7 +288,6 @@ plot(quants, metrics(5,:),'LineWidth',2)
 grid on;
 xlabel('Quantization Step');
 ylabel('Metric Value');
-ylim([0.92 1])
 title('resize before, pool = "none"')
 legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
@@ -308,7 +305,6 @@ plot(quants, metrics(5,:),'LineWidth',2)
 grid on;
 xlabel('Quantization Step');
 ylabel('Metric Value');
-ylim([0.92 1])
 title('resize before, pool = "avg pool"')
 legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
@@ -326,7 +322,6 @@ plot(quants, metrics(5,:),'LineWidth',2)
 grid on;
 xlabel('Quantization Step');
 ylabel('Metric Value');
-ylim([0.92 1])
 title('resize before, pool = "max pool"')
 legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
@@ -336,9 +331,9 @@ saveas(gcf,strcat(filepath,'/graph_',file_name,'_before_pooling=max_pool_metrics
 figure
 hold on
 plot(quants, metrics_none(1,:),'LineWidth', 2, 'Linestyle', '-.') 
-metrics = metrics_agg(:,:,1);
-plot(quants, metrics(1,:),'LineWidth',2, 'Linestyle', ':')
 metrics = metrics_agg(:,:,2);
+plot(quants, metrics(1,:),'LineWidth',2, 'Linestyle', ':')
+metrics = metrics_agg(:,:,3);
 plot(quants, metrics(1,:),'LineWidth',2, 'Linestyle', '--')
 title('Storage Ratio for resizing before, low pass')
 grid on;
@@ -352,15 +347,15 @@ saveas(gcf,strcat(filepath,'/graph_', file_name,'_before_storage_ratio.jpg'))
 figure
 hold on
 plot(quants, metrics_none(5,:),'LineWidth',2, 'Linestyle', '-.') 
-metrics = metrics_agg(:,:,1); 
+metrics = metrics_agg(:,:,2); 
 plot(quants, metrics(5,:), 'LineWidth',2, 'Linestyle', ':')
-metrics = metrics_agg(:,:,2);
+metrics = metrics_agg(:,:,3);
 plot(quants, metrics(5,:), 'LineWidth',2,'Linestyle', '--')
 title('Overall Metric for resizing before, low pass')
 grid on;
 xlabel('Quantization Step');
 ylabel('Overall Score');
-ylim([0.92 1])
+ylim([0.7 0.8])
 legend('none', 'average pool', 'max pool', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_', file_name,'_before_overall_grouped.jpg'))
@@ -381,7 +376,7 @@ for blk = 1:length(pooling)
     metrics_agg = cat(3, metrics_agg, metrics);
 end
 
-% plot metrics foraverage pooling
+% plot metrics for average pooling
 metrics = metrics_agg(:,:, 1);
 figure
 hold on 
@@ -392,7 +387,6 @@ plot(quants, metrics(5,:),'LineWidth',2)
 grid on;
 xlabel('Quantization Step');
 ylabel('Metric Value');
-ylim([0.92 1])
 title('resize after, pool = "avg pool"')
 legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
@@ -409,7 +403,6 @@ plot(quants, metrics(5,:),'LineWidth',2)
 grid on;
 xlabel('Quantization Step');
 ylabel('Metric Value');
-ylim([0.92 1])
 title('resize after, pool = "max pool"')
 legend('compression ratio', 'MSE', 'SSIM', 'overall', 'Location', 'northeastout', 'FontSize', 8)
 hold off
@@ -423,7 +416,7 @@ metrics = metrics_agg(:,:,1);
 plot(quants, metrics(1,:), 'LineWidth',2, 'Linestyle', ':')
 metrics = metrics_agg(:,:,2);
 plot(quants, metrics(1,:), 'LineWidth',2,'Linestyle', '--')
-title('Storage Ratio for resizing after, high pass')
+title('Storage Ratio for resizing after, low pass')
 grid on;
 xlabel('Quantization Step');
 ylabel('Storage Ratio');
@@ -439,11 +432,11 @@ metrics = metrics_agg(:,:,1);
 plot(quants, metrics(5,:), 'LineWidth',2, 'Linestyle', ':')
 metrics = metrics_agg(:,:,2);
 plot(quants, metrics(5,:), 'LineWidth',2,'Linestyle', '--')
-title('Overall metric for resizing after, high pass')
+title('Overall metric for resizing after, low pass')
 grid on;
 xlabel('Quantization Step');
 ylabel('Overall Score');
-ylim([0.92 1])
+ylim([0.7 0.8])
 legend('none', 'average pool', 'max pool', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_', file_name,'_after_overall_grouped.jpg'))
@@ -456,8 +449,8 @@ filepath = 'Results/low_freq_pass/test_thresh';
 
 % chosen parameters:
 resize = 1; % after
-quant = 1000;
-pooling = ["avg_pool"];
+quant = 1500;
+pooling = ["max_pool"];
 
 sigmas = 1:1:10; % to test sigma
 

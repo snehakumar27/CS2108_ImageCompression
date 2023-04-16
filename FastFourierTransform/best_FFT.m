@@ -11,9 +11,9 @@ filepath = '../Images';
 
 %define parameters (best from experiment)
 filter = 0;             % low frequency pass
-pooling = "avg_pool";   %average pooling
+pooling = "max_pool";   %average pooling
 resize = 1;             % resize after huffman decoding
-quant = 1000;           % quantization step 
+quant = 1500;           % quantization step 
 sigma = 2;              % standard deviation of Gaussian filter 
 
 %perform compression 
