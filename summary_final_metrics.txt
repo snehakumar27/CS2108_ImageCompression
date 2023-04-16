@@ -1,0 +1,18 @@
+
+Best SVD Metrics
+Compression Ratio (no Huff): 0.38932
+MSE (no Huff): 3.6027
+SSIM (no Huff): 0.99592
+
+Compression Ratio (with Huff): 0.40182
+MSE (with Huff): 31.7427
+SSIM (with Huff): 0.97496
+Storage Ratio (with Huff):0.41741
+
+
+
+Best FFT Metrics
+Compression Ratio: 0.39219
+MSE: 44.1944
+SSIM: 0.95005
+Storage Ratio: 0.066025
