@@ -1,5 +1,5 @@
 %% SVD Experiments 
-img = imread('../ImageData/marina_bay.jpg');
+img = imread('../Images/marina_bay.jpg');
 
 %% Testing Resize before (0, before SVD)
 
