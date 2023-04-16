@@ -2,22 +2,19 @@ function series = get_series_compressions(img, x_values, file_name, folder_name,
     % returns a matrix of size 4 by length(x_values)
     % each row is a different metric (refer to base_experiments to check)
 
-    %% Original image size (saved in MATLAB to compare bytes)
-    original_bytes = whos('img').bytes;
-    disp(strcat('Original Image Matlab: ', string(original_bytes), ' bytes'));
-
     %% Loop through series of compressed images to compare compressed ratio, MSE and SSIM:
 
     series_compressed = zeros(1,length(x_values));
     series_MSE = zeros(1,length(x_values));
     series_SSIM = zeros(1,length(x_values));
 
+    ori = dir('../Images/marina_bay.jpg');
     for x = 1:length(x_values)
         % for each parameter-specific compressed sizes
         d = dir(strcat(folder_name,'/',file_name,'_',num2str(x_values(x)), '.jpg'));
-        disp(original_bytes)
+        disp(ori.bytes)
         disp(d.bytes)
-        compression_ratio = (original_bytes - d.bytes)/original_bytes;
+        compression_ratio = (ori.bytes - d.bytes)/ori.bytes;
         disp(strcat(d.name, ': ', string(d.bytes), ' bytes, Compression ratio: ', string(compression_ratio)))
         series_compressed(x) = compression_ratio;
     end
@@ -45,6 +42,8 @@ function series = get_series_compressions(img, x_values, file_name, folder_name,
     %% Retrieve Image Storage Space
     if encoding == 1
         disp('bytes stored in order of : encoded, dict')
+        original_bytes = whos('img').bytes;
+        disp(strcat('Original Image Matlab: ', string(original_bytes), ' bytes'));
         series_storage = zeros(1,length(x_values)); % in order of x_values
 
         for x = 1:length(x_values)
