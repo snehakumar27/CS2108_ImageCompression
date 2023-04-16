@@ -95,7 +95,6 @@ title('Overall metric for resizing before')
 grid on;
 xlabel('Threshold Proportion');
 ylabel('Overall');
-ylim([0.88 1])
 legend('none', 'average pool', 'max pool', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_', file_name,'_before_overall_grouped.jpg'))
@@ -188,7 +187,6 @@ title('Overall metric for resizing after')
 grid on;
 xlabel('Threshold Proportion');
 ylabel('Overall');
-ylim([0.88 1])
 legend('none', 'average pool', 'max pool', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_', file_name,'_after_overall_grouped.jpg'))
@@ -320,7 +318,6 @@ title('Overall metric for resizing before with enco')
 grid on;
 xlabel('Threshold Proportion');
 ylabel('Overall');
-ylim([0.88 1])
 legend('none', 'average pool', 'max pool', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_', file_name,'_before_enco_overall_grouped.jpg'))
@@ -461,7 +458,6 @@ title('Overall metric for resizing after with enco')
 grid on;
 xlabel('Threshold Proportion');
 ylabel('Overall');
-ylim([0.88 1])
 legend('none', 'average pool', 'max pool', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_', file_name,'_after_enco_overall_grouped.jpg'))
@@ -612,7 +608,6 @@ title('Overall metric for resizing before with enco')
 grid on;
 xlabel('Quantization Step');
 ylabel('Overall');
-ylim([0.88 1])
 legend('none', 'average pool', 'max pool', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_', file_name,'_before_enco_overall_grouped.jpg'))
@@ -635,7 +630,7 @@ legend('none', 'average pool', 'max pool', 'Location', 'northeastout', 'FontSize
 hold off
 saveas(gcf,strcat(filepath,'/graph_', file_name,'_before_enco_storage_ratio_grouped.jpg'))
 
-%% Test for resizing after with Huffman
+%% Test for quantization steps resizing after with Huffman
 resize = 1; % resize set to before
 metrics_agg = [];
 encoding = 1;
@@ -751,7 +746,6 @@ title('Overall metric for resizing after with enco')
 grid on;
 xlabel('Quantization Step');
 ylabel('Overall');
-ylim([0.88 1])
 legend('none', 'average pool', 'max pool', 'Location', 'northeastout', 'FontSize', 8)
 hold off
 saveas(gcf,strcat(filepath,'/graph_', file_name,'_after_enco_overall_grouped.jpg'))

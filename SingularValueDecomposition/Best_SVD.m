@@ -9,11 +9,11 @@ filepath = '../Images';
 file_name = "marina_bay_SVD_compressed_best_no_encoding";
 
 %define parameters (best from experiment)
-thresh = 0.8;   %keep 20% of singular values 
-block = "none"; %no pooling
-resize = 0;     % (resizing order doesn't matter for no pooling)
-encoding = 0;   %no quantization & Huffman encoding 
-quant = 0;      %quant step 0 since no quant & Huffman encoding tried here 
+thresh = 0.88;      %keep 12% of singular values 
+block = "average";  %average pooling 
+resize = 0;         %resize pooled layer before SVD
+encoding = 0;       %no quantization & Huffman encoding 
+quant = 0;          %quant step 0 since no quant & Huffman encoding tried here 
 
 % perform compression
 comp_no_huff = SVD_compress(img, file_name, filepath, thresh, block, resize, encoding, quant);
@@ -39,7 +39,7 @@ filepath = '../Images';
 file_name = "marina_bay_SVD_compressed_best_with_encoding";
 
 %define parameters (best from experiment)
-thresh = 0.75;          %keep 25% of singular values 
+thresh = 0.72;          %keep 28% of singular values 
 block = "avg_pool";     %average pooling
 resize = 1;             %resize after SVD
 encoding = 1;           %with quantization & Huffman encoding 
