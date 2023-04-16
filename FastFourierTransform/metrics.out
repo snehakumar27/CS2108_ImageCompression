@@ -1,9 +1,0 @@
-{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('figure')" style="font-weight:bold">figure</a>
-Argument must be a Figure object or a positive integer.
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('FFT_best', 'C:\Users\User\OneDrive\Documents\GitHub\CS2108_ImageCompression\FFT\FFT_best.m', 18)" style="font-weight:bold">FFT_best</a> (<a href="matlab: opentoline('C:\Users\User\OneDrive\Documents\GitHub\CS2108_ImageCompression\FFT\FFT_best.m',18,0)">line 18</a>)
-figure on
-} 
-FFT_best
-FFT_best
-best_FFT

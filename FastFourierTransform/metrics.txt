@@ -1,0 +1,14 @@
+Original size:89171
+Compressed (no Huff) size:53558
+Compression Ratio (no Huff):0.39938
+MSE: 30.9664
+SSIM: 0.96889
+Stored Encodings Sizes:
+      115403      116488       17392       29888
+
+      112006      112787       13688       21744
+
+      281880
+
+Total Storage:821276 bytes,Storage Reduction:24364 bytes
+Storage Ratio:0.028811
